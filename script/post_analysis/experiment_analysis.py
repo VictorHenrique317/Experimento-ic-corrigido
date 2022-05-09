@@ -12,17 +12,15 @@ class ExperimentAnalysis():
     #     self.__experiment_clusters = FileSystem.getExperimentClusters()
 
     def __setQualityForExperiment(self, experiment):
-        found_patterns = experiment.getPatterns()
         planted_patterns = FileSystem.getPlantedPatterns(experiment.getIteration(), self.__configuration_name)
-        quality = Quality.calculate(found_patterns, planted_patterns)
+        quality = Quality.calculate(experiment, planted_patterns)
         experiment.getLog().writeAttribute("Quality", quality)
 
     def __setQualityForTruncatedExperiment(self, experiment):
         number = Configs.getParameter("nb_of_truncated_patterns")
-        found_patterns = experiment.getPatterns()[:number]
         planted_patterns = FileSystem.getPlantedPatterns(experiment.getIteration(), self.__configuration_name)
 
-        quality = Quality.calculate(found_patterns, planted_patterns)
+        quality = Quality.calculate(experiment, planted_patterns, truncate_number=number)
         experiment.getLog().writeAttribute("Truncated quality", quality)
 
     def __setQualityForExperimentCluster(self, cluster):

@@ -25,12 +25,10 @@ class ExperimentCluster():
 
     def loadExperiments(self):
         dimension = len(Configs.getParameter("dataset_size"))
-        # print("Loading experiments into memory")
-        for experiment_file in Commands.listFolder(self.__experiments_folder):
+        for experiment_file in Commands.listFolder(self.__experiments_folder): # memory dump
             experiment_path = f"{self.__experiments_folder}/{experiment_file}"
-            experiment = Experiment(experiment_path, self.__iteration, self.__correct_observations, self.__u, dimension)
+            experiment = Experiment(experiment_path, self.__iteration, self.__correct_observations, self.__u, dimension) # memory dump
             self.__experiments.append(experiment)
-        print("Done")
 
     def getIteration(self):
         return self.__iteration
@@ -80,6 +78,7 @@ class AveragedExperimentCluster():
         nb_clusters_per_iteration = len(twin_clusters[1])
         nb_iterations = len(twin_clusters)
 
+
         for ith_cluster in range(nb_clusters_per_iteration):
             clusters_to_average = []
 
@@ -87,7 +86,7 @@ class AveragedExperimentCluster():
             u = dummy_cluster.getU()
             correct_observations = dummy_cluster.getCorrectObservations()
 
-            for iteration in range(1, nb_iterations + 1):
+            for iteration in range(1, 12):
                 clusters_to_average.append(twin_clusters[iteration][ith_cluster])
 
             log_groups = [cluster.getLogs() for cluster in clusters_to_average] # [[m_log, p_log], [m_log, p_log]]
