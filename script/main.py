@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from base.controller import Controller
 from algorithm.multidupehack import Multidupehack
 from algorithm.triclusterbox import TriClusterBox
@@ -19,7 +18,7 @@ cancer = Cancer(controller)
 controller.initiateSession()
 # controller.initiatePostAnalysis()
 # controller.initiatePostAnalysis()
-=======
+
 from base.controller import Controller
 from algorithm.multidupehack import Multidupehack
 from algorithm.triclusterbox import TriClusterBox
@@ -37,7 +36,6 @@ getf = Getf(controller)
 # triclusterbox = TriClusterBox(controller)
 cancer = Cancer(controller)
 
-# controller.initiateSession()
-controller.initiatePostAnalysis()
-controller.initiatePostAnalysis()
->>>>>>> 3a4087cc24e19cec69c8cae052603070b000c29c
+controller.initiateSession()
+# controller.initiatePostAnalysis()
+# controller.initiatePostAnalysis()

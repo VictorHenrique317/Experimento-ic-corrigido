@@ -1,9 +1,9 @@
 {
     "configuration_name":"16x16x16x16-678",
-    "timeout": 600,
+    "timeout": 1200,
     "algorithms": ["Multidupehack", "Paf", "Getf", "TriClusterBox", "Cancer", "Paf Max Grow"],
     "tensor_name": "dataset.tensor",
-    "dataset_size": [16,16,16,16],
+    "dataset_size": [16,16,16, 16],
     "pattern_size": 6,
     "n_patterns":4,
      "correct_obs":[1,2,4,8,16],
