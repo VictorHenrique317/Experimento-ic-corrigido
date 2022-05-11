@@ -15,6 +15,7 @@ getf = Getf(controller)
 # triclusterbox = TriClusterBox(controller)
 cancer = Cancer(controller)
 
-# controller.initiateSession()
-controller.initiatePostAnalysis()
+controller.initiateSession()
 # controller.initiatePostAnalysis()
+# controller.initiatePostAnalysis()
+

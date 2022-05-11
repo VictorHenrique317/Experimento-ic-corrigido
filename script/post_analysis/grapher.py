@@ -53,7 +53,7 @@ class Grapher():
             self.__yscale = "linear"
             experiment_analysis = ExperimentAnalysis(self.__configuration_name)
             experiment_analysis.setQualityForExperimentClusters()
-            time.sleep(5)
+            time.sleep(10)  # wait writing qualities to archives
 
         elif attribute == Attribute.TRUNCATED_QUALITY:
             self.__yscale = "linear"

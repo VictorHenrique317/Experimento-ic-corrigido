@@ -86,7 +86,7 @@ class AveragedExperimentCluster():
             u = dummy_cluster.getU()
             correct_observations = dummy_cluster.getCorrectObservations()
 
-            for iteration in range(1, 12):
+            for iteration in range(1, nb_iterations):
                 clusters_to_average.append(twin_clusters[iteration][ith_cluster])
 
             log_groups = [cluster.getLogs() for cluster in clusters_to_average] # [[m_log, p_log], [m_log, p_log]]
