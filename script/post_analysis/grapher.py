@@ -1,6 +1,7 @@
 import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
+import time
 
 from post_analysis.plotting_data import PlottingData
 from models.attribute import Attribute
@@ -52,6 +53,8 @@ class Grapher():
             self.__yscale = "linear"
             experiment_analysis = ExperimentAnalysis(self.__configuration_name)
             experiment_analysis.setQualityForExperimentClusters()
+            time.sleep(5)
+
         elif attribute == Attribute.TRUNCATED_QUALITY:
             self.__yscale = "linear"
         elif attribute == Attribute.RUN_TIME:
@@ -106,7 +109,7 @@ class Grapher():
             self.__plotting_data.setAlgorithm(algorithm)
             self.__plotting_data.setAttribute(self.__attribute)
             self.__plotting_data.setU(u)
-            x,y = self.__plotting_data.getXY()
+            x, y = self.__plotting_data.getXY()
             if self.__isEmpty(x,y): # algorithm not runned
                 continue
             

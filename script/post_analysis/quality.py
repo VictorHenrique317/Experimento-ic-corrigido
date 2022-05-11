@@ -13,11 +13,9 @@ class Quality():
 
         for found_pattern in found_patterns:
             jaccard_index = found_pattern.jaccardIndex(planted_pattern)
-
             if jaccard_index >= higher_jaccard:
                 higher_jaccard = jaccard_index
                 most_similar_pattern = found_pattern
-
         return most_similar_pattern
 
     @staticmethod
@@ -51,18 +49,18 @@ class Quality():
             p_intersection_argmax = most_similar_found.intersection(planted_pattern)
             all_p_intersection_argmax.append(p_intersection_argmax)
 
-            numerator = Quality.__multiplePatternUnionArea(all_p_intersection_argmax)
+        numerator = Quality.__multiplePatternUnionArea(all_p_intersection_argmax)
 
-            planted_patterns_union = Quality.__multiplePatternUnion(planted_patterns)
+        planted_patterns_union = Quality.__multiplePatternUnion(planted_patterns)
 
-            if truncate_number is None:
-                found_patterns_union = Quality.__multiplePatternUnion(experiment.getPatterns())
-            else:
-                found_patterns = (pattern for index, pattern in enumerate(experiment.getPatterns()) if index < truncate_number)
-                found_patterns_union = Quality.__multiplePatternUnion(found_patterns)
+        if truncate_number is None:
+            found_patterns_union = Quality.__multiplePatternUnion(experiment.getPatterns())
+        else:
+            found_patterns = (pattern for index, pattern in enumerate(experiment.getPatterns()) if index < truncate_number)
+            found_patterns_union = Quality.__multiplePatternUnion(found_patterns)
 
-            denominator = planted_patterns_union.unionArea(found_patterns_union)
-            return numerator / denominator
+        denominator = planted_patterns_union.unionArea(found_patterns_union)
+        return numerator / denominator
         
 
         

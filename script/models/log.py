@@ -79,9 +79,20 @@ class Log():
 
         return value
 
+    def __deleteLastTwoLines(self):
+        lines = None
+        with open(self.path, 'r') as log:
+            lines = [line for line in log]
+            del lines[-1]
+            del lines[-2]
+
+        with open(self.path, 'w+') as new_log:
+            for line in lines:
+                new_log.write(line)
+
     def writeAttribute(self, attribute, value):
-        if attribute in self.__attributes:
-            return
+        if attribute in self.__attributes: # delete last two lines
+            self.__deleteLastTwoLines()
 
         with open(self.path, "a") as file:
             line = f"\n{attribute}:{value}\n"
