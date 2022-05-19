@@ -45,7 +45,7 @@ class Log():
         for translated_attribute, variants in attributes_dict.items():
 
             if self.__algorithm == "multidupehack":
-                if variants[0] in attribute:
+                if variants[0] in attribute or variants[2] in attribute:
                     return translated_attribute
 
             if self.__algorithm == "paf":

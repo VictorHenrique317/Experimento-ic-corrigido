@@ -13,3 +13,7 @@ class Configs():
     @staticmethod
     def getParameter(parameter):
         return Configs.__configs[parameter]
+
+    @staticmethod
+    def ufmgMatlabFolder():
+        return "~/Documents/MATLAB/bin/"

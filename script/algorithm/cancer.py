@@ -64,6 +64,10 @@ class Cancer(Algorithm):
         if len(Configs.getParameter("dataset_size")) > 2:
             return True
 
+        matlab_folder = ""
+        if self.__controller.ufmgMode():
+            matlab_folder = Configs.ufmgMatlabFolder()
+
         rank = self.__calculateRank(u)
 
         current_experiment = self.__controller.current_experiment
@@ -75,7 +79,7 @@ class Cancer(Algorithm):
         self.log_path = f"{current_iteration_folder}/output/{current_experiment}/logs/cancer.log"
         
         command = f"/usr/bin/time -o {self.log_path} -f 'Memory (kb): %M' "
-        command += f"matlab -nodisplay -r 'cd(\"algorithm\"); "
+        command += f"{matlab_folder}matlab -nodisplay -r 'cd(\"algorithm\"); "
         command += f"cancer({rank},\"../{translated_tensor_path}\","
         command += f"\"../{current_iteration_folder}\","
         command += f"\"{current_experiment}\");exit' | tail -n +11 "

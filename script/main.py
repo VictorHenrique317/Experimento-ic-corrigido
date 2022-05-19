@@ -6,16 +6,18 @@ from algorithm.paf_maxgrow import PafMaxGrow
 from algorithm.getf import Getf
 from algorithm.cancer import Cancer
 from base.file_system import FileSystem
+from utils.commands import Commands
 
 controller = Controller()
+cancer = Cancer(controller)
 multidupehack = Multidupehack(controller)
 paf = Paf(controller)
 pafmaxgrow = PafMaxGrow(controller)
 getf = Getf(controller)
 # triclusterbox = TriClusterBox(controller)
-cancer = Cancer(controller)
 
-controller.initiateSession()
-# controller.initiatePostAnalysis()
+
+# controller.initiateSession()
+controller.initiatePostAnalysis()
 # controller.initiatePostAnalysis()
 

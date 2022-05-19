@@ -51,9 +51,9 @@ class Grapher():
             self.__yscale = "log"
         elif attribute == Attribute.QUALITY:
             self.__yscale = "linear"
+
             experiment_analysis = ExperimentAnalysis(self.__configuration_name)
             experiment_analysis.setQualityForExperimentClusters()
-            time.sleep(10)  # wait writing qualities to archives
 
         elif attribute == Attribute.TRUNCATED_QUALITY:
             self.__yscale = "linear"
@@ -76,11 +76,14 @@ class Grapher():
         axis.set_ylim(self.__ylimits)
         plt.xscale("log", basex=2)
         plt.yscale(self.__yscale)
+        # axis.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+        # axis.get_xaxis().set_minor_formatter(matplotlib.ticker.NullFormatter())
+        #
+        # axis.get_yaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+        # axis.get_yaxis().set_minor_formatter(matplotlib.ticker.NullFormatter())
+
         axis.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
-        axis.get_xaxis().set_minor_formatter(matplotlib.ticker.NullFormatter())
-        
-        axis.get_yaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
-        axis.get_yaxis().set_minor_formatter(matplotlib.ticker.NullFormatter())
+        axis.get_yaxis().set_major_formatter(matplotlib.ticker.StrMethodFormatter('{x:.2f}'))
 
     def __dataForCombinedRuntime(self,u):
         self.__plotting_data.setAlgorithm("Multidupehack")
@@ -143,6 +146,7 @@ class Grapher():
     def drawGraph(self, folder, save):
         for u in Configs.getParameter("u_values"):
             fig, ax = plt.subplots()
+            fig = plt.figure(figsize=(12, 9))
             self.__drawCurves(u)
 
             if save:

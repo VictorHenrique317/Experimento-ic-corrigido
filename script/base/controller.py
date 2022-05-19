@@ -22,7 +22,10 @@ class Controller():
         self.__current_configuration_name = None
         self.current_iteration_folder = None
         self.current_experiment = None
+        self.__ufmg_mode = False
 
+    def ufmgMode(self):
+        return self.__ufmg_mode
 
     def addAlgorithm(self, algorithm):
         if algorithm not in self.algorithms:
@@ -61,7 +64,14 @@ class Controller():
             algorithm.resetTimeOutInfo()
 
     def initiateSession(self):
-        FileSystem.deleteIterationFolders()
+        is_on_ufmg = str(input("Is on ufmg? Y/N: ")).strip().lower()
+        if is_on_ufmg == "y":
+            self.__ufmg_mode = True
+
+        delete_iterations = str(input("Delete previous iterations? Y/N: ")).strip().lower()
+        if delete_iterations == "y":
+            FileSystem.deleteIterationFolders()
+
         FileSystem.deletePostAnalysisFolder()
 
         for config_file in Commands.listFolder(self.__configs_folder):
@@ -78,7 +88,7 @@ class Controller():
         print("Plotting pattern nb graph")
         grapher.setAttribute(Attribute.PATTERN_NUMBER)
         # grapher.setYLimits(0.6, 110_000)
-        grapher.setYLimits(0.6, 100_000)
+        grapher.setYLimits(0.6, 2_000_000)
         grapher.drawGraph(post_analysis_folder, save)
 
         print("Plotting memory graph")
@@ -95,10 +105,13 @@ class Controller():
         grapher.setAttribute(Attribute.QUALITY)
         grapher.setYLimits(0, 1.1)
         grapher.drawGraph(post_analysis_folder, save)
+        grapher.drawGraph(post_analysis_folder, save)
 
     def initiatePostAnalysis(self, save=True):
         print("#"*120)
-        FileSystem.deletePostAnalysisFolder()
+        delete_analysis = str(input("Delete previous post analysis? Y/N: ")).strip().lower()
+        if delete_analysis == "y":
+            FileSystem.deletePostAnalysisFolder()
 
         for config_file in Commands.listFolder(self.__configs_folder):
             Configs.readConfigFile(f"{self.__configs_folder}/{config_file}")
