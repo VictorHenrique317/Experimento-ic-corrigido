@@ -1,16 +1,16 @@
 {
   "configuration_name":"128x128-6789",
-  "timeout": 3600,
-  "algorithms": ["Multidupehack", "Paf", "Getf", "TriClusterBox", "Cancer", "Paf Max Grow"],
+  "timeout": 28800,
+  "algorithms": ["Multidupehack", "Paf", "Getf", "NClusterBox", "Cancer", "Paf Max Grow", "Feeded NClusterBox"],
   "tensor_name": "dataset.tensor",
-  "dataset_size": [128,128],
+  "dataset_size": [128, 128],
   "pattern_size": 6,
   "n_patterns":4,
   "correct_obs":[1,2,4,8,16],
 
-  "nb_iterations": 30,
+  "nb_iterations": 3,
   "u_values": [0.6,0.7,0.8,0.9],
-  "s": 3,
+  "s": 4,
   "a": 1000000,
 
   "plot_attributes": {

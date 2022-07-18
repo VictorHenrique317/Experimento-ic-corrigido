@@ -1,6 +1,7 @@
 from base.controller import Controller
 from algorithm.multidupehack import Multidupehack
-from algorithm.triclusterbox import TriClusterBox
+from algorithm.nclusterbox import NClusterBox
+from algorithm.feeded_nclusterbox import FeededNClusterBox
 from algorithm.paf import Paf
 from algorithm.paf_maxgrow import PafMaxGrow
 from algorithm.getf import Getf
@@ -14,10 +15,11 @@ multidupehack = Multidupehack(controller)
 paf = Paf(controller)
 pafmaxgrow = PafMaxGrow(controller)
 getf = Getf(controller)
-# triclusterbox = TriClusterBox(controller)
+nclusterbox = NClusterBox(controller)
+#feeded_nclusterbox = FeededNClusterBox(controller)
 
 
-# controller.initiateSession()
+#controller.initiateSession()
 controller.initiatePostAnalysis()
 # controller.initiatePostAnalysis()
 

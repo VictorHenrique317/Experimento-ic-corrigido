@@ -56,9 +56,13 @@ class Log():
                 if attribute == variants[1]:
                     return translated_attribute     
 
-            if self.__algorithm == "triclusterbox":
+            if self.__algorithm == "nclusterbox":
                 if attribute == variants[1]:
-                    return translated_attribute 
+                    return translated_attribute
+
+            if self.__algorithm == "feedednclusterbox":
+                if attribute == variants[1]:
+                    return translated_attribute
 
             if self.__algorithm == "cancer":
                 if attribute == variants[1]:
@@ -136,5 +140,5 @@ class AveragedLog():
             
             averaged_log = AveragedLog(algorithm, attributes)
             averaged_logs.append(averaged_log)
-        
+
         return averaged_logs

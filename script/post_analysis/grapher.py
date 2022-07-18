@@ -26,16 +26,17 @@ class Grapher():
         multidupehack = algorithms[0]
         paf = algorithms[1]
         getf = algorithms[2]
-        triclusterbox = algorithms[3]
+        nclusterbox = algorithms[3]
         cancer = algorithms[4]
         pafmaxgrow = algorithms[5]
+        feeded_nclusterbox = algorithms[6]
         multidupehack_paf = "Multidupehack + Paf"
         planted_patterns_number = "Number of planted patterns"
         truncated_paf = f"First {truncate_nb} Paf patterns"
         
         self.__curves = {multidupehack:"blue", paf:"red", multidupehack_paf:"purple", \
-                 getf:"darkgreen", planted_patterns_number:"orange", truncated_paf:"magenta", triclusterbox:"brown",\
-                 cancer:"lime", pafmaxgrow:"palevioletred"}
+                 getf:"darkgreen", planted_patterns_number:"orange", truncated_paf:"magenta", nclusterbox:"brown",\
+                 cancer:"lime", pafmaxgrow:"palevioletred", feeded_nclusterbox:"lightsalmon"}
 
     def setAttribute(self, attribute: Attribute):
         self.__attribute = attribute
@@ -52,8 +53,8 @@ class Grapher():
         elif attribute == Attribute.QUALITY:
             self.__yscale = "linear"
 
-            experiment_analysis = ExperimentAnalysis(self.__configuration_name)
-            experiment_analysis.setQualityForExperimentClusters()
+            #experiment_analysis = ExperimentAnalysis(self.__configuration_name)
+            #experiment_analysis.setQualityForExperimentClusters()
 
         elif attribute == Attribute.TRUNCATED_QUALITY:
             self.__yscale = "linear"
@@ -109,10 +110,15 @@ class Grapher():
 
     def __drawCurves(self, u):
         for algorithm in Configs.getParameter("algorithms"):
+
             self.__plotting_data.setAlgorithm(algorithm)
             self.__plotting_data.setAttribute(self.__attribute)
             self.__plotting_data.setU(u)
             x, y = self.__plotting_data.getXY()
+            # print(algorithm)
+            # print(list(x))
+            # print(list(y))
+            # print("="*40)
             if self.__isEmpty(x,y): # algorithm not runned
                 continue
             

@@ -109,9 +109,7 @@ class Controller():
 
     def initiatePostAnalysis(self, save=True):
         print("#"*120)
-        delete_analysis = str(input("Delete previous post analysis? Y/N: ")).strip().lower()
-        if delete_analysis == "y":
-            FileSystem.deletePostAnalysisFolder()
+        FileSystem.deletePostAnalysisFolder()
 
         for config_file in Commands.listFolder(self.__configs_folder):
             Configs.readConfigFile(f"{self.__configs_folder}/{config_file}")

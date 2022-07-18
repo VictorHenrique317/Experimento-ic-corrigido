@@ -1,0 +1,28 @@
+#!/usr/bin/awk -f
+
+function dim_as_string() {
+    dim = ""
+    for (f in a[e][j])
+	dim = dim "," f
+    return substr(dim, 2) }
+
+BEGIN {
+    i = int(i)
+    if (i <= 0) {
+	print "Write right after \"-v i=\", the column number in which elements\nare to be individually taken."
+	exit 64 } }
+
+i < NF && $NF {
+    for (j = 1; j != i; ++j)
+	a[$i][j][$j]
+    while (++j != NF)
+	a[$i][j][$j] }
+
+END {
+    for (e in a) {
+	for (j = 1; j != i; ++j)
+	    printf "%s ", dim_as_string()
+	printf "%s", e
+	while (++j != NF)
+	    printf " %s", dim_as_string()
+	print "" } }

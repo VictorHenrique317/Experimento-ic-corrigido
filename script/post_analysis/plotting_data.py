@@ -33,6 +33,7 @@ class PlottingData():
             return
         
         filtered_clusters = self.__filterClustersByU(self.__original_clusters, self.__u)
+        # print(self.__original_clusters[0].getLogs())
         filtered_logs = self.__filterLogsByAlgorithm(filtered_clusters, self.__algorithm)
         attribute_values = self.__filterLogsByAttribute(filtered_logs, self.__attribute)
 
